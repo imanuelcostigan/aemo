@@ -1,0 +1,18 @@
+Package: aemo
+Type: Package
+Title: Download and process AEMO price and demand data
+Version: 0.1.0
+Date: 2014-06-15
+Authors@R: c(
+    person('Imanuel', 'Costigan', email = 'i.costigan@me.com',
+    role = c('aut', 'cre')),
+    person('Australian Energy Market Operator', role = 'cph'))
+Description: Download and process real time trading prices and demand data
+    freely provided by the Australian Energy Market Operator (AEMO). Note that
+    this package does not include any data.
+License: GPL-2
+Imports:
+    stringr (>= 0.6.2),
+    assertthat (>= 0.1)
+Suggests:
+    testthat
