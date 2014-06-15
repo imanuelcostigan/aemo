@@ -12,6 +12,7 @@ Description: Download and process real time trading prices and demand data
     this package does not include any data.
 License: GPL-2
 Imports:
+    dplyr (>= 0.2),
     stringr (>= 0.6.2),
     assertthat (>= 0.1)
 Suggests:
