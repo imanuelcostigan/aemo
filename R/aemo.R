@@ -120,6 +120,7 @@ clean_up_aemo_data_files <- function (path = '.')
 #' @examples
 #' data(aemo)
 #' head(aemo)
+"aemo"
 
 aemo_regions <- function ()
   c('NSW', 'QLD', 'VIC', 'SA', 'TAS', 'SNOWY')
