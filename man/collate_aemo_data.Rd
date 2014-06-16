@@ -25,4 +25,9 @@ are identified by having a filename of the form
 file exists on \code{path}, all available data files are downloaded from the
 AEMO website using \code{\link{get_aemo_data}}.
 }
+\examples{
+\dontrun{
+collate_aemo_data()
+}
+}
 

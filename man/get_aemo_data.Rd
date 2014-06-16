@@ -39,6 +39,11 @@ specify that:
 for any purpose, but only with accurate and appropriate attribution of the
 relevant AEMO Material and AEMO as its author".
 }
+\examples{
+\dontrun{
+get_aemo_data('nsw', 2014, 1)
+}
+}
 \references{
 \href{http://www.aemo.com.au/Electricity/Data/Price-and-Demand/Aggregated-Price-and-Demand-Data-Files}{AEMO website}
 }

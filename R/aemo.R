@@ -25,6 +25,10 @@
 #' the path to which the AEMO files are downloaded.
 #' @return data files whose number corresponds to the maximum lenght of one of
 #' the parameters. The file names have the pattern: "[REGION][YYYY][MM].csv".
+#' @examples
+#' \dontrun{
+#' get_aemo_data('nsw', 2014, 1)
+#' }
 #' @references
 #' \href{http://www.aemo.com.au/Electricity/Data/Price-and-Demand/Aggregated-Price-and-Demand-Data-Files}{AEMO website}
 #' @importFrom assertthat assert_that
@@ -57,7 +61,12 @@ get_aemo_data <- function (regions, years, months, path = '.')
 #' @return a data frame containing five fields: \code{"REGION"} (factor),
 #' \code{"SETTLEMENTDATE"} (POSIXct), \code{"TOTALDEMAND"} (numeric),
 #' \code{"RRP"} (numeric) and \code{"PERIODTYPE"} (factor).
+#' @examples
+#' \dontrun{
+#' collate_aemo_data()
+#' }
 #' @importFrom dplyr rbind_all %.% mutate
+#' @importFrom lubridate ymd_hms
 #' @export
 
 collate_aemo_data <- function (path = '.', remove_files = TRUE)
@@ -96,6 +105,21 @@ collate_aemo_data <- function (path = '.', remove_files = TRUE)
 
 clean_up_aemo_data_files <- function (path = '.')
   file.remove(list_aemo_data_files(path))
+
+#' AEMO data set 1998-2014
+#'
+#' A sample data set containing trading interval price and demand data sourced
+#' from the AEMO website on or about 16 June 2014. This was downloaded and
+#' collated using \code{\link{collate_aemo_data}}.
+#'
+#' @format \code{"REGION"} (factor), \code{"SETTLEMENTDATE"} (POSIXct),
+#' \code{"TOTALDEMAND"} (numeric), \code{"RRP"} (numeric) and
+#' \code{"PERIODTYPE"} (factor).
+#' @references
+#' \href{http://www.aemo.com.au/Electricity/Data/Price-and-Demand/Aggregated-Price-and-Demand-Data-Files}{AEMO website}
+#' @examples
+#' data(aemo)
+#' head(aemo)
 
 aemo_regions <- function ()
   c('NSW', 'QLD', 'VIC', 'SA', 'TAS', 'SNOWY')
