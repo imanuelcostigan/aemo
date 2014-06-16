@@ -29,3 +29,10 @@ test_that('AEMO data URL creator is correct across regions and months', {
   expect_equal(aemo_data_url('nsw', 1999, 11),
     "http://www.nemmco.com.au/mms/data/DATA199911_NSW1.csv")
 })
+
+test_that('AEMO data URLs still correct', {
+  int_code <- get_aemo_data('nsw', 2011, 1, tempdir())
+  expect_equal(unlist(int_code, use.names = FALSE), 0)
+  int_code <- get_aemo_data('nsw', 1999, 11, tempdir())
+  expect_equal(unlist(int_code, use.names = FALSE), 0)
+})
