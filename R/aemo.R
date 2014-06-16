@@ -18,7 +18,7 @@ get_aemo_data <- function (regions, years, months)
   invisible(Map(download.file, url = url, destfile = destfile))
 }
 
-#' @importFrom dplyr rbind_all
+#' @importFrom dplyr rbind_all %.% mutate
 collate_aemo_data <- function (path = '.', remove_files = TRUE)
 {
   aemo_files <- list_aemo_data_files(path)
@@ -36,11 +36,14 @@ collate_aemo_data <- function (path = '.', remove_files = TRUE)
     clean_up_aemo_data_files(path)
   }
   message('Collating AEMO data...')
-  rbind_all(aemo_dfs)
+  aemo <- rbind_all(aemo_dfs)
+  aemo %.% mutate(REGION = as.factor(REGION),
+    SETTLEMENTDATE = ymd_hms(SETTLEMENTDATE, truncated = 1),
+    PERIODTYPE = as.factor(PERIODTYPE))
 }
 
 aemo_regions <- function ()
-  c('NSW', 'QLD', 'VIC', 'SA')
+  c('NSW', 'QLD', 'VIC', 'SA', 'TAS', 'SNOWY')
 
 aemo_periods <- function ()
 {
@@ -57,10 +60,10 @@ aemo_periods <- function ()
 aemo_data_url_stub <- function (regions, years, months)
 {
   stubs <- vector('character', NROW(paste0(regions, years, months)))
-  stubs <- 'http://www.nemweb.com.au/mms.GRAPHS/data/DATA'
+  stubs[] <- 'http://www.nemweb.com.au/mms.GRAPHS/data/DATA'
   stubs[years == 1999 & months == 11] <-
     'http://www.nemmco.com.au/mms/data/DATA'
-
+  return (stubs)
 }
 
 aemo_data_url <- function (regions, years, months)
@@ -85,5 +88,10 @@ all_regions_periods_combos <- function ()
   regions <- rep(aemo_regions(), each = NROW(all_periods))
   years <- as.numeric(rep(str_sub(all_periods, 1, 4), NROW(aemo_regions())))
   months <- as.numeric(rep(str_sub(all_periods, 5), NROW(aemo_regions())))
-  list(regions = regions, years = years, months = months)
+  is_invalid_tas <- (years * 100 + months < 200505) & regions == 'TAS'
+  is_invalid_snowy <- (years * 100 + months > 200806) & regions == 'SNOWY'
+  is_invalid_tas_snowy <- is_invalid_tas | is_invalid_snowy
+  list(regions = regions[!is_invalid_tas_snowy],
+    years = years[!is_invalid_tas_snowy],
+    months = months[!is_invalid_tas_snowy])
 }

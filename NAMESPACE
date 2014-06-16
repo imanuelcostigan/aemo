@@ -2,5 +2,7 @@
 
 export(get_aemo_data)
 importFrom(assertthat,assert_that)
+importFrom(dplyr,"%.%")
+importFrom(dplyr,mutate)
 importFrom(dplyr,rbind_all)
 importFrom(stringr,str_sub)
