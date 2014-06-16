@@ -106,7 +106,7 @@ collate_aemo_data <- function (path = '.', remove_files = TRUE)
 clean_up_aemo_data_files <- function (path = '.')
   file.remove(list_aemo_data_files(path))
 
-#' AEMO data set 1998-2014
+#' AEMO data set 1998-2008
 #'
 #' A sample data set containing trading interval price and demand data sourced
 #' from the AEMO website on or about 16 June 2014. This was downloaded and

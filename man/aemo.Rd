@@ -2,7 +2,7 @@
 \docType{data}
 \name{aemo}
 \alias{aemo}
-\title{AEMO data set 1998-2014}
+\title{AEMO data set 1998-2008}
 \format{\code{"REGION"} (factor), \code{"SETTLEMENTDATE"} (POSIXct),
 \code{"TOTALDEMAND"} (numeric), \code{"RRP"} (numeric) and
 \code{"PERIODTYPE"} (factor).}
