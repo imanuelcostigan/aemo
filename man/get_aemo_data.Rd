@@ -3,20 +3,43 @@
 \alias{get_aemo_data}
 \title{Download data from AEMO website}
 \usage{
-get_aemo_data(regions, years, months)
+get_aemo_data(regions, years, months, path = ".")
 }
 \arguments{
-\item{regions}{a case invariant character vector of abbreviated AEMO regions.}
+\item{regions}{a case invariant character vector of abbreviated AEMO regions.
+Must be one of \code{"nsw"}, \code{"vic"}, \code{"sa"}, \code{"qld"},
+\code{"snowy"} or \code{"tas"}. Snowy region data is only available up
+to and including Jun 2008 while Tasmania region data is available from
+and including May 2005. Otherwise, all regions have data available from and
+including Dec 1998 up to the end of the month previous to the current month.}
 
-\item{years}{a numeric vector of years in the form \code{YYYY}.}
+\item{years}{a numeric vector of years in the form \code{YYYY}. See the
+\code{regions} parameter for more info.}
 
-\item{months}{a numeric vector of months in the form \code{MM}.}
+\item{months}{a numeric vector of months in the form \code{MM}.See the
+\code{regions} parameter for more info.}
+
+\item{path}{defaults to \code{"."} (current working directory) and denotes
+the path to which the AEMO files are downloaded.}
 }
 \value{
 data files whose number corresponds to the maximum lenght of one of
-the parameters. The file names have the pattern: "[REGION][YYYY][MM].csv"
+the parameters. The file names have the pattern: "[REGION][YYYY][MM].csv".
 }
 \description{
-Download data from AEMO website
+Trading interval level price and demand data is available on the AEMO
+website. This function downloads these files for each region and period
+requested.
+}
+\details{
+\href{http://www.aemo.com.au/About-AEMO/Legal-Notices/Copyright-Permissions}{AEMO's copyright permissions}
+specify that:
+
+"AEMO confirms its general permission for anyone to use AEMO Material
+for any purpose, but only with accurate and appropriate attribution of the
+relevant AEMO Material and AEMO as its author".
+}
+\references{
+\href{http://www.aemo.com.au/Electricity/Data/Price-and-Demand/Aggregated-Price-and-Demand-Data-Files}{AEMO website}
 }
 
