@@ -27,8 +27,8 @@ test_that('AEMO data URL creator is correct across regions and months', {
 })
 
 test_that('AEMO data URLs still correct', {
-  int_code <- get_aemo_data('nsw', 2011, 1, tempdir())
-  expect_equal(unlist(int_code, use.names = FALSE), 0)
-  int_code <- get_aemo_data('nsw', 1999, 11, tempdir())
-  expect_equal(unlist(int_code, use.names = FALSE), 0)
+  web_url <- 'http://www.nemweb.com.au/mms.GRAPHS/data/DATA201101_NSW1.csv'
+  co_url <- 'http://www.nemmco.com.au/mms/data/DATA199911_NSW1.csv'
+  expect_equal(GET(web_url)$status, 200)
+  expect_equal(GET(co_url)$status, 200)
 })
