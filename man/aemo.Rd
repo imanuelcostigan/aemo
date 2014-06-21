@@ -2,7 +2,7 @@
 \docType{data}
 \name{aemo}
 \alias{aemo}
-\title{AEMO data set 1998-2008}
+\title{AEMO data set May 2009 - May 2014}
 \format{\code{"REGION"} (factor), \code{"SETTLEMENTDATE"} (POSIXct),
 \code{"TOTALDEMAND"} (numeric), \code{"RRP"} (numeric) and
 \code{"PERIODTYPE"} (factor).}
@@ -11,7 +11,7 @@ aemo
 }
 \description{
 A sample data set containing trading interval price and demand data sourced
-from the AEMO website on or about 16 June 2014. This was downloaded and
+from the AEMO website on or about 21 June 2014. This was downloaded and
 collated using \code{\link{collate_aemo_data}}.
 }
 \examples{
