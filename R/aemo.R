@@ -87,7 +87,7 @@ collate_aemo_data <- function (path = '.', remove_files = TRUE)
   }
   message('Collating AEMO data...')
   aemo <- rbind_all(aemo_dfs)
-  message('Formatting data frame')
+  message('Formatting data frame...')
   aemo %.% mutate(REGION = as.factor(REGION),
     SETTLEMENTDATE = ymd_hms(SETTLEMENTDATE, truncated = 1),
     PERIODTYPE = as.factor(PERIODTYPE))
