@@ -6,6 +6,8 @@ Install the package from GitHub with:
 
         devtools::install_github("imanuelcostigan/aemo")
 
-This may be available on CRAN in the future.
+The package is also avaiable on CRAN:
+
+        install.packages('aemo')
 
 [![Build Status](https://travis-ci.org/imanuelcostigan/aemo.svg?branch=master)](https://travis-ci.org/imanuelcostigan/aemo)

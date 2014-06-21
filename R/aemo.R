@@ -1,3 +1,6 @@
+if (getRversion() >= "2.15.1")
+  utils::globalVariables(c('REGION', 'SETTLEMENTDATE', 'PERIODTYPE'))
+
 #' Download data from AEMO website
 #'
 #' Trading interval level price and demand data is available on the AEMO
