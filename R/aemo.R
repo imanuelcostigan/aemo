@@ -125,6 +125,7 @@ clean_up_aemo_data_files <- function (path = '.')
 aemo_regions <- function ()
   c('NSW', 'QLD', 'VIC', 'SA', 'TAS', 'SNOWY')
 
+#' @importFrom lubridate year today month
 aemo_periods <- function ()
 {
   yy_seq <- 1998:year(today())
