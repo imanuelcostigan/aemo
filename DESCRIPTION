@@ -18,7 +18,8 @@ Imports:
     stringr (>= 0.6.2),
     assertthat (>= 0.1),
     lubridate (>= 1.3.3),
-    utils
+    utils,
+    stats
 Suggests:
     testthat,
     httr (>= 0.3)

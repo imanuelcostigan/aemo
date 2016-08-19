@@ -1,6 +1,3 @@
-if (getRversion() >= "2.15.1")
-  utils::globalVariables(c('REGION', 'SETTLEMENTDATE', 'PERIODTYPE'))
-
 #' Download data from AEMO website
 #'
 #' Trading interval level price and demand data is available on the AEMO
@@ -88,9 +85,12 @@ collate_aemo_data <- function (path = '.', remove_files = TRUE)
   message('Collating AEMO data...')
   aemo <- dplyr::rbind_all(aemo_dfs)
   message('Formatting data frame...')
-  dplyr::mutate(aemo, REGION = as.factor(REGION),
-    SETTLEMENTDATE = lubridate::ymd_hms(SETTLEMENTDATE, truncated = 1),
-    PERIODTYPE = as.factor(PERIODTYPE))
+  dplyr::mutate(aemo,
+    .dots = stats::setNames(
+      list(as.factor(~REGION),
+        lubridate::ymd_hms(~SETTLEMENTDATE, truncated = 1),
+        as.factor(~PERIODTYPE)),
+      c("REGION", "SETTLEMENTDATE", "PERIODTYPE")))
 }
 
 #' Remove AEMO CSV files
