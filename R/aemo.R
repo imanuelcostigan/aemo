@@ -68,7 +68,6 @@ get_aemo_data <- function (regions, years, months, path = '.')
 #' \dontrun{
 #' collate_aemo_data()
 #' }
-#' @importFrom dplyr rbind_all %>% mutate
 #' @importFrom lubridate ymd_hms
 #' @export
 
@@ -89,9 +88,9 @@ collate_aemo_data <- function (path = '.', remove_files = TRUE)
     clean_up_aemo_data_files(path)
   }
   message('Collating AEMO data...')
-  aemo <- rbind_all(aemo_dfs)
+  aemo <- dplyr::rbind_all(aemo_dfs)
   message('Formatting data frame...')
-  aemo %>% mutate(REGION = as.factor(REGION),
+  dplyr::mutate(aemo, REGION = as.factor(REGION),
     SETTLEMENTDATE = ymd_hms(SETTLEMENTDATE, truncated = 1),
     PERIODTYPE = as.factor(PERIODTYPE))
 }
