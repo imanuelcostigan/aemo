@@ -1,5 +1,6 @@
 # aemo
 
+[![CRAN](http://www.r-pkg.org/badges/version/aemo)](http://cran.r-project.org/package=aemo)
 [![Build Status](https://travis-ci.org/imanuelcostigan/aemo.svg?branch=master)](https://travis-ci.org/imanuelcostigan/aemo)
 [![Coverage Status](https://img.shields.io/codecov/c/github/imanuelcostigan/aemo/master.svg)](https://codecov.io/github/imanuelcostigan/aemo?branch=master)
 
