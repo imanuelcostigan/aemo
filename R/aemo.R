@@ -34,14 +34,13 @@ if (getRversion() >= "2.15.1")
 #' }
 #' @references
 #' \href{http://www.aemo.com.au/Electricity/Data/Price-and-Demand/Aggregated-Price-and-Demand-Data-Files}{AEMO website}
-#' @importFrom assertthat assert_that
 #' @export
 
 get_aemo_data <- function (regions, years, months, path = '.')
 {
   regions <- toupper(regions)
   periods <- as.numeric(paste0(years, formatC(months, width = 2, flag = '0')))
-  assert_that(all(regions %in% aemo_regions()),
+  assertthat::assert_that(all(regions %in% aemo_regions()),
     all(periods %in% aemo_periods()))
   url <- aemo_data_url(regions, years, months)
   destfile <- file.path(path, aemo_data_file_name(regions, years, months))
@@ -68,7 +67,6 @@ get_aemo_data <- function (regions, years, months, path = '.')
 #' \dontrun{
 #' collate_aemo_data()
 #' }
-#' @importFrom lubridate ymd_hms
 #' @export
 
 collate_aemo_data <- function (path = '.', remove_files = TRUE)
@@ -91,7 +89,7 @@ collate_aemo_data <- function (path = '.', remove_files = TRUE)
   aemo <- dplyr::rbind_all(aemo_dfs)
   message('Formatting data frame...')
   dplyr::mutate(aemo, REGION = as.factor(REGION),
-    SETTLEMENTDATE = ymd_hms(SETTLEMENTDATE, truncated = 1),
+    SETTLEMENTDATE = lubridate::ymd_hms(SETTLEMENTDATE, truncated = 1),
     PERIODTYPE = as.factor(PERIODTYPE))
 }
 
@@ -127,13 +125,12 @@ clean_up_aemo_data_files <- function (path = '.')
 aemo_regions <- function ()
   c('NSW', 'QLD', 'VIC', 'SA', 'TAS', 'SNOWY')
 
-#' @importFrom lubridate year today month
 aemo_periods <- function ()
 {
-  yy_seq <- 1998:year(today())
+  yy_seq <- 1998:(lubridate::year(lubridate::today()))
   period_min <- 199812
-  period_max <- as.numeric(paste0(year(today()),
-    formatC(month(today()) - 1, width = 2, flag = '0')))
+  period_max <- as.numeric(paste0(lubridate::year(lubridate::today()),
+    formatC(lubridate::month(lubridate::today()) - 1, width = 2, flag = '0')))
   all_periods <- outer(yy_seq, formatC(1:12, width = 2, flag = '0'), paste0)
   all_periods <- sort(as.numeric(all_periods))
   in_period <- all_periods >= period_min & all_periods <= period_max
@@ -161,13 +158,14 @@ aemo_data_file_name <- function (regions, years, months)
 list_aemo_data_files <- function (path = '.')
   list.files(path, '(NSW|QLD|VIC|SA|TAS|SNOWY)[[:digit:]]{6}\\.csv')
 
-#' @importFrom stringr str_sub
 all_regions_periods_combos <- function ()
 {
   all_periods <- aemo_periods()
   regions <- rep(aemo_regions(), each = NROW(all_periods))
-  years <- as.numeric(rep(str_sub(all_periods, 1, 4), NROW(aemo_regions())))
-  months <- as.numeric(rep(str_sub(all_periods, 5), NROW(aemo_regions())))
+  years <- as.numeric(rep(stringr::str_sub(all_periods, 1, 4),
+    NROW(aemo_regions())))
+  months <- as.numeric(rep(stringr::str_sub(all_periods, 5),
+    NROW(aemo_regions())))
   is_invalid_tas <- (years * 100 + months < 200505) & regions == 'TAS'
   is_invalid_snowy <- (years * 100 + months > 200806) & regions == 'SNOWY'
   is_invalid_tas_snowy <- is_invalid_tas | is_invalid_snowy
