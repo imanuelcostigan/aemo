@@ -45,7 +45,7 @@ get_aemo_data <- function (regions, years, months, path = '.')
     all(periods %in% aemo_periods()))
   url <- aemo_data_url(regions, years, months)
   destfile <- file.path(path, aemo_data_file_name(regions, years, months))
-  invisible(Map(download.file, url = url, destfile = destfile))
+  invisible(Map(utils::download.file, url = url, destfile = destfile))
 }
 
 #' Collate AEMO data
@@ -68,7 +68,7 @@ get_aemo_data <- function (regions, years, months, path = '.')
 #' \dontrun{
 #' collate_aemo_data()
 #' }
-#' @importFrom dplyr rbind_all %.% mutate
+#' @importFrom dplyr rbind_all %>% mutate
 #' @importFrom lubridate ymd_hms
 #' @export
 
@@ -83,7 +83,7 @@ collate_aemo_data <- function (path = '.', remove_files = TRUE)
     aemo_files <- list_aemo_data_files(path)
   }
   message('Reading AEMO data files...')
-  aemo_dfs <- lapply(aemo_files, read.csv, stringsAsFactors = FALSE)
+  aemo_dfs <- lapply(aemo_files, utils::read.csv, stringsAsFactors = FALSE)
   if (remove_files) {
     message('Removing AEMO data files...')
     clean_up_aemo_data_files(path)
@@ -91,7 +91,7 @@ collate_aemo_data <- function (path = '.', remove_files = TRUE)
   message('Collating AEMO data...')
   aemo <- rbind_all(aemo_dfs)
   message('Formatting data frame...')
-  aemo %.% mutate(REGION = as.factor(REGION),
+  aemo %>% mutate(REGION = as.factor(REGION),
     SETTLEMENTDATE = ymd_hms(SETTLEMENTDATE, truncated = 1),
     PERIODTYPE = as.factor(PERIODTYPE))
 }
