@@ -1,3 +1,9 @@
+# Version 0.2.0
+
+- Fix calls to upstream package calls
+- CI testing improved: added Appveyor for automated Windows OS testing.
+- Added code coverage checks
+
 # Version 0.1.0
 
 - Initial release
