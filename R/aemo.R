@@ -27,18 +27,19 @@
 #' the parameters. The file names have the pattern: "[REGION][YYYY][MM].csv".
 #' @examples
 #' \dontrun{
-#' get_aemo_data('nsw', 2014, 1)
+#' get_aemo_data("nsw", 2014, 1)
 #' }
 #' @references
 #' [AEMO website](http://www.aemo.com.au/Electricity/Data/Price-and-Demand/Aggregated-Price-and-Demand-Data-Files)
 #' @export
 
-get_aemo_data <- function (regions, years, months, path = '.')
-{
+get_aemo_data <- function(regions, years, months, path = ".") {
   regions <- toupper(regions)
-  periods <- as.numeric(paste0(years, formatC(months, width = 2, flag = '0')))
-  assertthat::assert_that(all(regions %in% aemo_regions()),
-    all(periods %in% aemo_periods()))
+  periods <- as.numeric(paste0(years, formatC(months, width = 2, flag = "0")))
+  assertthat::assert_that(
+    all(regions %in% aemo_regions()),
+    all(periods %in% aemo_periods())
+  )
   url <- aemo_data_url(regions, years, months)
   destfile <- file.path(path, aemo_data_file_name(regions, years, months))
   invisible(Map(utils::download.file, url = url, destfile = destfile))
@@ -66,31 +67,33 @@ get_aemo_data <- function (regions, years, months, path = '.')
 #' }
 #' @export
 
-collate_aemo_data <- function (path = '.', remove_files = TRUE)
-{
+collate_aemo_data <- function(path = ".", remove_files = TRUE) {
   aemo_files <- list_aemo_data_files(path)
-  if (identical(aemo_files, character()))
-  {
+  if (identical(aemo_files, character())) {
     info <- all_regions_periods_combos()
-    message('Downloading data from AEMO....')
+    message("Downloading data from AEMO....")
     get_aemo_data(info$region, info$years, info$months, path)
     aemo_files <- list_aemo_data_files(path)
   }
-  message('Reading AEMO data files...')
+  message("Reading AEMO data files...")
   aemo_dfs <- lapply(aemo_files, utils::read.csv, stringsAsFactors = FALSE)
   if (remove_files) {
-    message('Removing AEMO data files...')
+    message("Removing AEMO data files...")
     clean_up_aemo_data_files(path)
   }
-  message('Collating AEMO data...')
+  message("Collating AEMO data...")
   aemo <- dplyr::rbind_all(aemo_dfs)
-  message('Formatting data frame...')
+  message("Formatting data frame...")
   dplyr::mutate(aemo,
     .dots = stats::setNames(
-      list(as.factor(~REGION),
+      list(
+        as.factor(~REGION),
         lubridate::ymd_hms(~SETTLEMENTDATE, truncated = 1),
-        as.factor(~PERIODTYPE)),
-      c("REGION", "SETTLEMENTDATE", "PERIODTYPE")))
+        as.factor(~PERIODTYPE)
+      ),
+      c("REGION", "SETTLEMENTDATE", "PERIODTYPE")
+    )
+  )
 }
 
 #' Remove AEMO CSV files
@@ -103,8 +106,9 @@ collate_aemo_data <- function (path = '.', remove_files = TRUE)
 #' @return no return value. However, AEMO files that are identified are removed.
 #' @export
 
-clean_up_aemo_data_files <- function (path = '.')
+clean_up_aemo_data_files <- function(path = ".") {
   file.remove(list_aemo_data_files(path))
+}
 
 #' AEMO data set May 2009 - May 2014
 #'
@@ -122,54 +126,63 @@ clean_up_aemo_data_files <- function (path = '.')
 #' head(aemo)
 "aemo"
 
-aemo_regions <- function ()
-  c('NSW', 'QLD', 'VIC', 'SA', 'TAS', 'SNOWY')
+aemo_regions <- function() {
+  c("NSW", "QLD", "VIC", "SA", "TAS", "SNOWY")
+}
 
-aemo_periods <- function ()
-{
+aemo_periods <- function() {
   yy_seq <- 1998:(lubridate::year(lubridate::today()))
   period_min <- 199812
-  period_max <- as.numeric(paste0(lubridate::year(lubridate::today()),
-    formatC(lubridate::month(lubridate::today()) - 1, width = 2, flag = '0')))
-  all_periods <- outer(yy_seq, formatC(1:12, width = 2, flag = '0'), paste0)
+  period_max <- as.numeric(paste0(
+    lubridate::year(lubridate::today()),
+    formatC(lubridate::month(lubridate::today()) - 1, width = 2, flag = "0")
+  ))
+  all_periods <- outer(yy_seq, formatC(1:12, width = 2, flag = "0"), paste0)
   all_periods <- sort(as.numeric(all_periods))
   in_period <- all_periods >= period_min & all_periods <= period_max
   all_periods[in_period]
 }
 
-aemo_data_url_stub <- function (regions, years, months)
-{
-  stubs <- vector('character', NROW(paste0(regions, years, months)))
-  stubs[] <- 'http://www.nemweb.com.au/mms.GRAPHS/data/DATA'
+aemo_data_url_stub <- function(regions, years, months) {
+  stubs <- vector("character", NROW(paste0(regions, years, months)))
+  stubs[] <- "http://www.nemweb.com.au/mms.GRAPHS/data/DATA"
   stubs[years == 1999 & months == 11] <-
-    'http://www.nemmco.com.au/mms/data/DATA'
-  return (stubs)
+    "http://www.nemmco.com.au/mms/data/DATA"
+  return(stubs)
 }
 
-aemo_data_url <- function (regions, years, months)
-{
-  paste0(aemo_data_url_stub(regions, years, months), years,
-    formatC(months, width = 2, flag = '0'), '_', toupper(regions), '1.csv')
+aemo_data_url <- function(regions, years, months) {
+  paste0(
+    aemo_data_url_stub(regions, years, months), years,
+    formatC(months, width = 2, flag = "0"), "_", toupper(regions), "1.csv"
+  )
 }
 
-aemo_data_file_name <- function (regions, years, months)
-  paste0(toupper(regions), years, formatC(months, width = 2, flag = '0'), '.csv')
+aemo_data_file_name <- function(regions, years, months) {
+  paste0(toupper(regions), years, formatC(months, width = 2, flag = "0"), ".csv")
+}
 
-list_aemo_data_files <- function (path = '.')
-  list.files(path, '(NSW|QLD|VIC|SA|TAS|SNOWY)[[:digit:]]{6}\\.csv')
+list_aemo_data_files <- function(path = ".") {
+  list.files(path, "(NSW|QLD|VIC|SA|TAS|SNOWY)[[:digit:]]{6}\\.csv")
+}
 
-all_regions_periods_combos <- function ()
-{
+all_regions_periods_combos <- function() {
   all_periods <- aemo_periods()
   regions <- rep(aemo_regions(), each = NROW(all_periods))
-  years <- as.numeric(rep(stringr::str_sub(all_periods, 1, 4),
-    NROW(aemo_regions())))
-  months <- as.numeric(rep(stringr::str_sub(all_periods, 5),
-    NROW(aemo_regions())))
-  is_invalid_tas <- (years * 100 + months < 200505) & regions == 'TAS'
-  is_invalid_snowy <- (years * 100 + months > 200806) & regions == 'SNOWY'
+  years <- as.numeric(rep(
+    stringr::str_sub(all_periods, 1, 4),
+    NROW(aemo_regions())
+  ))
+  months <- as.numeric(rep(
+    stringr::str_sub(all_periods, 5),
+    NROW(aemo_regions())
+  ))
+  is_invalid_tas <- (years * 100 + months < 200505) & regions == "TAS"
+  is_invalid_snowy <- (years * 100 + months > 200806) & regions == "SNOWY"
   is_invalid_tas_snowy <- is_invalid_tas | is_invalid_snowy
-  list(regions = regions[!is_invalid_tas_snowy],
+  list(
+    regions = regions[!is_invalid_tas_snowy],
     years = years[!is_invalid_tas_snowy],
-    months = months[!is_invalid_tas_snowy])
+    months = months[!is_invalid_tas_snowy]
+  )
 }
