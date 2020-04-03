@@ -33,7 +33,7 @@ website. This function downloads these files for each region and period
 requested.
 }
 \details{
-\href{http://www.aemo.com.au/About-AEMO/Legal-Notices/Copyright-Permissions}{AEMO's copyright permissions}
+\href{https://www.aemo.com.au/privacy-and-legal-notices/copyright-permissions}{AEMO's copyright permissions}
 specify that:
 
 "AEMO confirms its general permission for anyone to use AEMO Material
@@ -48,4 +48,3 @@ get_aemo_data('nsw', 2014, 1)
 \references{
 \href{http://www.aemo.com.au/Electricity/Data/Price-and-Demand/Aggregated-Price-and-Demand-Data-Files}{AEMO website}
 }
-

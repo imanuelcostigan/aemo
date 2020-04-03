@@ -22,13 +22,12 @@ a data frame containing five fields: \code{"REGION"} (factor),
 \description{
 This function collates AEMO data files that are on the \code{path}. These
 are identified by having a filename of the form
-\code{[REGION][YYYY][MM].csv} (e.g. \code{"NSW201405.csv"}). If no such
+\verb{[REGION][YYYY][MM].csv} (e.g. \code{"NSW201405.csv"}). If no such
 file exists on \code{path}, all available data files are downloaded from the
-AEMO website using \code{\link{get_aemo_data}}.
+AEMO website using \code{\link[=get_aemo_data]{get_aemo_data()}}.
 }
 \examples{
 \dontrun{
 collate_aemo_data()
 }
 }
-
