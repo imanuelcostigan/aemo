@@ -1,29 +1,32 @@
-Package: aemo
 Type: Package
+Package: aemo
 Title: Download and Process AEMO Price and Demand Data
 Version: 0.2.0
 Date: 2016-08-20
-Authors@R: c(
-    person('Imanuel', 'Costigan', email = 'i.costigan@me.com',
-    role = c('aut', 'cre')),
-    person('Australian Energy Market Operator', role = 'cph'))
-Description: Download and process real time trading prices and demand data
-    freely provided by the Australian Energy Market Operator (AEMO). Note that
-    this includes a sample data set.
+Authors@R: 
+    c(person(given = "Imanuel",
+             family = "Costigan",
+             role = c("aut", "cre"),
+             email = "i.costigan@me.com"),
+      person(given = "Australian Energy Market Operator",
+             role = "cph"))
+Description: Download and process real time trading prices and
+    demand data freely provided by the Australian Energy Market Operator
+    (AEMO). Note that this includes a sample data set.
 License: GPL-2
 Depends:
     R (>= 3.1.0)
 Imports:
-    dplyr (>= 0.2),
-    stringr (>= 0.6.2),
     assertthat (>= 0.1),
+    dplyr (>= 0.2),
     lubridate (>= 1.3.3),
-    utils,
-    stats
+    stats,
+    stringr (>= 0.6.2),
+    utils
 Suggests:
-    testthat,
+    covr,
     httr (>= 0.3),
-    covr
-RoxygenNote: 7.1.0
+    testthat
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.0
