@@ -17,6 +17,5 @@ no return value. However, AEMO files that are identified are removed.
 \description{
 This function removes AEMO data files that are on the \code{path}. These
 are identified by having a filename of the form
-\code{[REGION][YYYY][MM].csv} (e.g. \code{"NSW201405.csv"}).
+\verb{[REGION][YYYY][MM].csv} (e.g. \code{"NSW201405.csv"}).
 }
-

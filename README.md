@@ -1,11 +1,14 @@
 # aemo
 
-[![CRAN](http://www.r-pkg.org/badges/version/aemo)](http://cran.r-project.org/package=aemo)
-[![Build Status](https://travis-ci.org/imanuelcostigan/aemo.svg?branch=master)](https://travis-ci.org/imanuelcostigan/aemo)
-[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/imanuelcostigan/aemo?branch=master&svg=true)](https://ci.appveyor.com/project/imanuelcostigan/aemo)
+<!-- badges: start -->
+[![CRAN
+status](https://www.r-pkg.org/badges/version/aemo)](https://CRAN.R-project.org/package=aemo)
+[![GitHub
+Actions](https://github.com/imanuelcostigan/fmbasics/workflows/R-CMD-check/badge.svg)](https://github.com/imanuelcostigan/fmbasics/actions?workflow=R-CMD-check)
 [![Coverage Status](https://img.shields.io/codecov/c/github/imanuelcostigan/aemo/master.svg)](https://codecov.io/github/imanuelcostigan/aemo?branch=master)
+<!-- badges: end -->
 
-An R package that enables you to download and collate trading interval price and demand data by region and period from the [AEMO website](http://www.aemo.com.au/Electricity/Data/Price-and-Demand).
+An R package that enables you to download and collate trading interval price and demand data by region and period from the [AEMO website](https://www.aemo.com.au/energy-systems/electricity/national-electricity-market-nem/data-nem/aggregated-data).
 
 Install the package from GitHub with:
 
