@@ -143,18 +143,19 @@ aemo_periods <- function() {
   all_periods[in_period]
 }
 
-aemo_data_url_stub <- function(regions, years, months) {
-  stubs <- vector("character", NROW(paste0(regions, years, months)))
-  stubs[] <- "http://www.nemweb.com.au/mms.GRAPHS/data/DATA"
-  stubs[years == 1999 & months == 11] <-
-    "http://www.nemmco.com.au/mms/data/DATA"
-  return(stubs)
+aemo_data_url_stub <- function() {
+  "https://www.aemo.com.au/aemo/data/nem/priceanddemand/PRICE_AND_DEMAND_"
 }
 
 aemo_data_url <- function(regions, years, months) {
+  # https://www.aemo.com.au/aemo/data/nem/priceanddemand/PRICE_AND_DEMAND_199911_NSW1.csv
   paste0(
-    aemo_data_url_stub(regions, years, months), years,
-    formatC(months, width = 2, flag = "0"), "_", toupper(regions), "1.csv"
+    aemo_data_url_stub(),
+    years,
+    formatC(months, width = 2, flag = "0"),
+    "_",
+    toupper(regions),
+    "1.csv"
   )
 }
 
