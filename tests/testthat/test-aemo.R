@@ -6,11 +6,11 @@ library(httr)
 
 test_that("URL stub is correct", {
   expect_equal(
-    aemo_data_url_stub("nsw", 1999, 11),
+    aemo_data_url_stub(),
     "https://www.aemo.com.au/aemo/data/nem/priceanddemand/PRICE_AND_DEMAND_"
   )
   expect_equal(
-    aemo_data_url_stub("nsw", 2011, 11),
+    aemo_data_url_stub(),
     "https://www.aemo.com.au/aemo/data/nem/priceanddemand/PRICE_AND_DEMAND_"
   )
 })
