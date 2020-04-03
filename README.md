@@ -14,7 +14,7 @@ Install the package from GitHub with:
 
         devtools::install_github("imanuelcostigan/aemo")
 
-The package is also avaiable on CRAN:
+The package is also available on CRAN:
 
         install.packages('aemo')
 

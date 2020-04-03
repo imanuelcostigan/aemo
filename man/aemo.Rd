@@ -22,6 +22,6 @@ data(aemo)
 head(aemo)
 }
 \references{
-\href{http://www.aemo.com.au/Electricity/Data/Price-and-Demand/Aggregated-Price-and-Demand-Data-Files}{AEMO website}
+\href{https://www.aemo.com.au/energy-systems/electricity/national-electricity-market-nem/data-nem/aggregated-data}{AEMO website}
 }
 \keyword{datasets}

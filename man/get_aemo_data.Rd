@@ -24,7 +24,7 @@ including Dec 1998 up to the end of the month previous to the current month.}
 the path to which the AEMO files are downloaded.}
 }
 \value{
-data files whose number corresponds to the maximum lenght of one of
+data files whose number corresponds to the maximum length of one of
 the parameters. The file names have the pattern: "[REGION][YYYY][MM].csv".
 }
 \description{
@@ -42,7 +42,7 @@ relevant AEMO Material and AEMO as its author".
 }
 \examples{
 \dontrun{
-get_aemo_data('nsw', 2014, 1)
+get_aemo_data("nsw", 2014, 1)
 }
 }
 \references{

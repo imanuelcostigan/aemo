@@ -23,7 +23,7 @@
 #' `regions` parameter for more info.
 #' @param path defaults to `"."` (current working directory) and denotes
 #' the path to which the AEMO files are downloaded.
-#' @return data files whose number corresponds to the maximum lenght of one of
+#' @return data files whose number corresponds to the maximum length of one of
 #' the parameters. The file names have the pattern: "[REGION][YYYY][MM].csv".
 #' @examples
 #' \dontrun{
