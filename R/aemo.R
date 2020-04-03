@@ -81,9 +81,9 @@ collate_aemo_data <- function(path = ".", remove_files = TRUE) {
     message("Removing AEMO data files...")
     clean_up_aemo_data_files(path)
   }
-  message("Collating AEMO data...")
-  aemo <- dplyr::rbind_all(aemo_dfs)
-  message("Formatting data frame...")
+  message('Collating AEMO data...')
+  aemo <- dplyr::bind_rows(aemo_dfs)
+  message('Formatting data frame...')
   dplyr::mutate(aemo,
     .dots = stats::setNames(
       list(
