@@ -13,6 +13,8 @@ Description: Download and process real time trading prices and
     demand data freely provided by the Australian Energy Market Operator
     (AEMO). Note that this includes a sample data set.
 License: GPL-2
+Depends:
+    R (>= 3.1.0)
 Imports:
     assertthat (>= 0.1),
     dplyr (>= 0.2),
