@@ -4,7 +4,7 @@
 #' website. This function downloads these files for each region and period
 #' requested.
 #'
-#' \href{https://www.aemo.com.au/privacy-and-legal-notices/copyright-permissions}{AEMO's copyright permissions}
+#' [AEMO's copyright permissions](https://www.aemo.com.au/privacy-and-legal-notices/copyright-permissions)
 #' specify that:
 #'
 #' "AEMO confirms its general permission for anyone to use AEMO Material
@@ -12,16 +12,16 @@
 #' relevant AEMO Material and AEMO as its author".
 #'
 #' @param regions a case invariant character vector of abbreviated AEMO regions.
-#' Must be one of \code{"nsw"}, \code{"vic"}, \code{"sa"}, \code{"qld"},
-#' \code{"snowy"} or \code{"tas"}. Snowy region data is only available up
+#' Must be one of `"nsw"`, `"vic"`, `"sa"`, `"qld"`,
+#' `"snowy"` or `"tas"`. Snowy region data is only available up
 #' to and including Jun 2008 while Tasmania region data is available from
 #' and including May 2005. Otherwise, all regions have data available from and
 #' including Dec 1998 up to the end of the month previous to the current month.
-#' @param years a numeric vector of years in the form \code{YYYY}. See the
-#' \code{regions} parameter for more info.
-#' @param months a numeric vector of months in the form \code{MM}.See the
-#' \code{regions} parameter for more info.
-#' @param path defaults to \code{"."} (current working directory) and denotes
+#' @param years a numeric vector of years in the form `YYYY`. See the
+#' `regions` parameter for more info.
+#' @param months a numeric vector of months in the form `MM`.See the
+#' `regions` parameter for more info.
+#' @param path defaults to `"."` (current working directory) and denotes
 #' the path to which the AEMO files are downloaded.
 #' @return data files whose number corresponds to the maximum lenght of one of
 #' the parameters. The file names have the pattern: "[REGION][YYYY][MM].csv".
@@ -30,7 +30,7 @@
 #' get_aemo_data('nsw', 2014, 1)
 #' }
 #' @references
-#' \href{http://www.aemo.com.au/Electricity/Data/Price-and-Demand/Aggregated-Price-and-Demand-Data-Files}{AEMO website}
+#' [AEMO website](http://www.aemo.com.au/Electricity/Data/Price-and-Demand/Aggregated-Price-and-Demand-Data-Files)
 #' @export
 
 get_aemo_data <- function (regions, years, months, path = '.')
@@ -46,20 +46,20 @@ get_aemo_data <- function (regions, years, months, path = '.')
 
 #' Collate AEMO data
 #'
-#' This function collates AEMO data files that are on the \code{path}. These
+#' This function collates AEMO data files that are on the `path`. These
 #' are identified by having a filename of the form
-#' \code{[REGION][YYYY][MM].csv} (e.g. \code{"NSW201405.csv"}). If no such
-#' file exists on \code{path}, all available data files are downloaded from the
-#' AEMO website using \code{\link{get_aemo_data}}.
+#' `[REGION][YYYY][MM].csv` (e.g. `"NSW201405.csv"`). If no such
+#' file exists on `path`, all available data files are downloaded from the
+#' AEMO website using [get_aemo_data()].
 #'
 #' @param path a string containing the location of the AEMO (CSV) data files
 #' that you wish to collate. These must have filenames of the form specified
 #' above.
 #' @param remove_files a boolean flag indicating whether the AEMO CSV files
 #' should be removed once the data sets are collated.
-#' @return a data frame containing five fields: \code{"REGION"} (factor),
-#' \code{"SETTLEMENTDATE"} (POSIXct), \code{"TOTALDEMAND"} (numeric),
-#' \code{"RRP"} (numeric) and \code{"PERIODTYPE"} (factor).
+#' @return a data frame containing five fields: `"REGION"` (factor),
+#' `"SETTLEMENTDATE"` (POSIXct), `"TOTALDEMAND"` (numeric),
+#' `"RRP"` (numeric) and `"PERIODTYPE"` (factor).
 #' @examples
 #' \dontrun{
 #' collate_aemo_data()
@@ -95,9 +95,9 @@ collate_aemo_data <- function (path = '.', remove_files = TRUE)
 
 #' Remove AEMO CSV files
 #'
-#' This function removes AEMO data files that are on the \code{path}. These
+#' This function removes AEMO data files that are on the `path`. These
 #' are identified by having a filename of the form
-#' \code{[REGION][YYYY][MM].csv} (e.g. \code{"NSW201405.csv"}).
+#' `[REGION][YYYY][MM].csv` (e.g. `"NSW201405.csv"`).
 #'
 #' @inheritParams collate_aemo_data
 #' @return no return value. However, AEMO files that are identified are removed.
@@ -110,13 +110,13 @@ clean_up_aemo_data_files <- function (path = '.')
 #'
 #' A sample data set containing trading interval price and demand data sourced
 #' from the AEMO website on or about 21 June 2014. This was downloaded and
-#' collated using \code{\link{collate_aemo_data}}.
+#' collated using [collate_aemo_data()].
 #'
-#' @format \code{"REGION"} (factor), \code{"SETTLEMENTDATE"} (POSIXct),
-#' \code{"TOTALDEMAND"} (numeric), \code{"RRP"} (numeric) and
-#' \code{"PERIODTYPE"} (factor).
+#' @format `"REGION"` (factor), `"SETTLEMENTDATE"` (POSIXct),
+#' `"TOTALDEMAND"` (numeric), `"RRP"` (numeric) and
+#' `"PERIODTYPE"` (factor).
 #' @references
-#' \href{http://www.aemo.com.au/Electricity/Data/Price-and-Demand/Aggregated-Price-and-Demand-Data-Files}{AEMO website}
+#' [AEMO website](http://www.aemo.com.au/Electricity/Data/Price-and-Demand/Aggregated-Price-and-Demand-Data-Files)
 #' @examples
 #' data(aemo)
 #' head(aemo)
