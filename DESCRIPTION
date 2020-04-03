@@ -1,7 +1,7 @@
 Type: Package
 Package: aemo
 Title: Download and Process AEMO Price and Demand Data
-Version: 0.2.0
+Version: 0.2.99
 Date: 2016-08-20
 Authors@R: 
     c(person(given = "Imanuel",
