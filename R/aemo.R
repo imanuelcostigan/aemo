@@ -160,7 +160,12 @@ aemo_data_url <- function(regions, years, months) {
 }
 
 aemo_data_file_name <- function(regions, years, months) {
-  paste0(toupper(regions), years, formatC(months, width = 2, flag = "0"), ".csv")
+  paste0(
+    toupper(regions),
+    years,
+    formatC(months, width = 2, flag = "0"),
+    ".csv"
+  )
 }
 
 list_aemo_data_files <- function(path = ".") {
