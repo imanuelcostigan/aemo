@@ -120,7 +120,7 @@ clean_up_aemo_data_files <- function(path = ".") {
 #' `"TOTALDEMAND"` (numeric), `"RRP"` (numeric) and
 #' `"PERIODTYPE"` (factor).
 #' @references
-#' [AEMO website](http://www.aemo.com.au/Electricity/Data/Price-and-Demand/Aggregated-Price-and-Demand-Data-Files)
+#' [AEMO website](https://www.aemo.com.au/energy-systems/electricity/national-electricity-market-nem/data-nem/aggregated-data)
 #' @examples
 #' data(aemo)
 #' head(aemo)
