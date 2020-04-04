@@ -12,7 +12,9 @@ Build matrix:
 - {os: ubuntu-16.04, r: '3.6', rspm: "https://demo.rstudiopm.com/all/__linux__/xenial/latest"}
 ```
 
-## R CMD check results
+Have also checked on win-builder (release, devel).
+
+## Check results
 
 0 errors | 0 warnings | 0 note
 
