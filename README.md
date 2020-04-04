@@ -4,7 +4,7 @@
 [![CRAN
 status](https://www.r-pkg.org/badges/version/aemo)](https://CRAN.R-project.org/package=aemo)
 [![GitHub
-Actions](https://github.com/imanuelcostigan/fmbasics/workflows/R-CMD-check/badge.svg)](https://github.com/imanuelcostigan/fmbasics/actions?workflow=R-CMD-check)
+Actions](https://github.com/imanuelcostigan/aemo/workflows/R-CMD-check/badge.svg)](https://github.com/imanuelcostigan/aemo/actions?workflow=R-CMD-check)
 [![Coverage Status](https://img.shields.io/codecov/c/github/imanuelcostigan/aemo/master.svg)](https://codecov.io/github/imanuelcostigan/aemo?branch=master)
 <!-- badges: end -->
 

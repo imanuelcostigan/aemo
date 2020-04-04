@@ -1,14 +1,20 @@
 ## Test environments
 
-* local OS X install, R 3.3.1
-* ubuntu 12.04 (on travis-ci), R 3.3.1
-* windows on appveyor
+GitHub Actions 
+
+Build matrix:
+
+```
+- {os: windows-latest, r: '3.6'}
+- {os: macOS-latest, r: '3.6'}
+- {os: macOS-latest, r: 'devel'}
+- {os: ubuntu-16.04, r: '3.5', rspm: "https://demo.rstudiopm.com/all/__linux__/xenial/latest"}
+- {os: ubuntu-16.04, r: '3.6', rspm: "https://demo.rstudiopm.com/all/__linux__/xenial/latest"}
+```
 
 ## R CMD check results
 
 0 errors | 0 warnings | 0 note
-
-* An updated submission...Converted Title field to title case per feedback.
 
 ## Reverse dependencies
 
