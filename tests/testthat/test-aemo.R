@@ -36,7 +36,7 @@ test_that("AEMO data URL creator is correct across regions and months", {
 })
 
 test_that("AEMO data URLs still correct", {
-  web_url <- "http://www.nemweb.com.au/mms.GRAPHS/data/DATA201101_NSW1.csv"
+  web_url <- "https://www.aemo.com.au/aemo/data/nem/priceanddemand/PRICE_AND_DEMAND_201101_NSW1.csv"
   co_url <- "https://www.aemo.com.au/aemo/data/nem/priceanddemand/PRICE_AND_DEMAND_199911_NSW1.csv"
   expect_equal(GET(web_url)$status, 200)
   expect_equal(GET(co_url)$status, 200)
